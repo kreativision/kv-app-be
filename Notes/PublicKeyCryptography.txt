@@ -1,0 +1,21 @@
+Asymmetric/Symmetric Cryptography.
+
+Asymmetric Cryptography uses a pair of PRIVATE/PUBLIC keys for the cryptography process:    EXAMPLE => public key cryptography
+Symmetric key cryptography on the other hand uses only one key for the process, simpletr.   EXAMPLE => TLS cryptography
+
+Public key cryptography relies on an ELLIPTIC CURVE MULTIPLICATION. 
+It mathematically links the private and public keys. 
+
+Having the PRIVATE key one can derive the PUBLIC key but the inverse is impossible.
+
+==============================================================================================================================
+
+Trapdoor Functions [a.k.a Hash Functions.]
+
+A one way (deterministic) function, that takes a data of an arbitrary length and compresses it to a data sequence of a predetermined length, which is (ideally) completely random.
+
+Trapdoor functions should
+    - be deterministic & be one-way, CANNOT RETRIEVE THE INPUT FROM THE OUTPUT
+    - have a large number space, [IDEALLY INFINITE] => reduce clashes.
+    - generate small enough sequence to transport over HTTP.
+    - should generate the same output for a given input EVERY TIME.

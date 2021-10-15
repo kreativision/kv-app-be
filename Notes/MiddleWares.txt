@@ -1,0 +1,30 @@
+// App Config
+/**
+ * THESE ARE ALL GLOBAL MIDDLEWARES FOR OUR APP.
+ * THIS IS HOW YOU DECLARE GLOBAL MIDDLEWARES.
+ */
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+===================================================================================================================
+
+// Routes
+/**
+ * ROUTES TOO IS SORT OF A GLOBAL MIDDLEWARE,
+ * TO INTERCEPT THE INCOMING HTTP CALL,
+ * AND REDIRECT IT TO SOM OTHER ROUTE.
+ */
+app.use("/products", productsController);
+
+===================================================================================================================
+
+/**
+ *
+ * NOTE: =>
+ * ERROR HANDLING MIDDLEWARES FOULD BE DEFINED AT THE END OF THE APP CONFIG.
+ * EVEN AFTER ALL THE ROUTE DEFINITIONS.
+ *
+ * REASON => THE ERROR WILL PROPAGATE DIRECTLY TO THE HANDLER, SKIPPING ALL POSSIBLE ROUTINGS.
+ */
