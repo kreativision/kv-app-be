@@ -12,31 +12,29 @@ const clusterUri = process.env.CLUSTER_URI;
 // App Instance.
 const app = express();
 
-// App Config
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Routes
 app.use("/products", productsController);
 
 async function startApp() {
-  console.log("Connecting Database Cluster.");
+  console.log("Connecting Database Cluster...");
   try {
-    const connection = await mongoose.connect(clusterUri, {
+    mongoose.connect(clusterUri, {
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true,
     });
-    if (connection) {
+    mongoose.connection.on("connected", () => {
       console.log("Cluster Connected Successfully.");
-      console.log("Starting App.");
+      console.log("Starting App...");
       const server = app.listen(port, () =>
         console.log(`App Started Successfully on port ${port}`)
       );
-    }
+    });
   } catch (error) {
-    console.log("Cluster Connection Failed with the following error.");
+    console.log("Cluster Connection Failed!");
     console.log(error);
   }
 }
