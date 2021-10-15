@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/products", productsController);
 
 async function startApp() {
-  console.log("Trying DB Connection");
+  console.log("Connecting Database Cluster.");
   try {
     const connection = await mongoose.connect(clusterUri, {
       useNewUrlParser: true,
@@ -29,14 +29,14 @@ async function startApp() {
       useUnifiedTopology: true,
     });
     if (connection) {
-      console.log("DB Cluster Connected.");
-      console.log("Running Express App.");
+      console.log("Cluster Connected Successfully.");
+      console.log("Starting App.");
       const server = app.listen(port, () =>
         console.log(`App Started Successfully on port ${port}`)
       );
     }
   } catch (error) {
-    console.log("Cluster Connection Failed:");
+    console.log("Cluster Connection Failed with the following error.");
     console.log(error);
   }
 }
