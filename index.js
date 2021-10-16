@@ -4,9 +4,10 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const productsController = require("./controllers/products.controller");
+const usersController = require("./controllers/user.controller");
 
 // Env Variables Config.
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 const clusterUri = process.env.CLUSTER_URI;
 
 // App Instance.
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/products", productsController);
+app.use("/users", usersController);
 
 async function startApp() {
   console.log("Connecting Database Cluster...");
