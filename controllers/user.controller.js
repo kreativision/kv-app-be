@@ -43,7 +43,7 @@ router.post("/login", async (req, res) => {
     const user = await User.findOne({ email });
     if (!user)
       return res
-        .status(404)
+        .status(400)
         .json({ description: "You are not registered.", response: null });
     else {
       const match = await user.validatePassword(password);
